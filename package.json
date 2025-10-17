@@ -1,0 +1,22 @@
+{
+  "name": "e-shop-tl-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/E-Shop-TL/E-shop-TL-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/E-Shop-TL/E-shop-TL-api/issues"
+  },
+  "homepage": "https://github.com/E-Shop-TL/E-shop-TL-api#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
