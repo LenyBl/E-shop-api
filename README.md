@@ -66,7 +66,7 @@ e-shop-tl-api/
 ## 🧩 Installation & Configuration
 
 ```bash
-git clone https://github.com/ton-utilisateur/e-shop-tl-api.git
+git clone https://github.com/LenyBl/e-shop-tl-api.git
 cd e-shop-tl-api
 npm install
 ```
