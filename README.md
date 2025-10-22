@@ -49,7 +49,10 @@ e-shop-tl-api/
 │   ├── ProductRoute.js
 │   ├── CartRoute.js
 │   └── OrderRoute.js
-│
+|
+|── tools/
+│    ├── randomNumber.js
+|
 ├── middlewares/
 │   ├── authMiddleware.js
 │   └── adminMiddleware.js
