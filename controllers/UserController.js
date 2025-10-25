@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 exports.registerUser = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, role } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username, email, password: hashedPassword });
+        const newUser = new User({ username, email, password: hashedPassword, role: role || 'user' });
         const newCart = new Cart({ user: newUser._id, items: [] });
         newUser.cart = newCart._id;
         const savedUser = await newUser.save();

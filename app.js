@@ -7,6 +7,7 @@ const connectDB = require('./config/database')
 const productRoutes = require('./routes/ProductRoute')
 const userRoutes = require('./routes/UserRoute')
 const cartRoutes = require('./routes/CartRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 app.use(express.json())
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/carts', cartRoutes)
+app.use('/api/auth', authRoutes)
 
 app.listen(port, () => {
     console.log(`Server started on https://localhost:${port}`)
