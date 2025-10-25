@@ -36,7 +36,8 @@ e-shop-tl-api/
 │   ├── UserController.js
 │   ├── ProductController.js
 │   ├── CartController.js
-│   └── OrderController.js
+│   ├── OrderController.js  
+|   └── AuthController.js  
 │
 ├── models/
 │   ├── UserModel.js
@@ -55,7 +56,6 @@ e-shop-tl-api/
 |
 ├── middlewares/
 │   ├── authMiddleware.js
-│   └── adminMiddleware.js
 │
 ├── .env
 ├── .gitignore
