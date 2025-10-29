@@ -11,6 +11,7 @@ const productRoutes = require('./routes/ProductRoute')
 const userRoutes = require('./routes/UserRoute')
 const cartRoutes = require('./routes/CartRoutes')
 const authRoutes = require('./routes/authRoutes')
+const orderRoutes = require('./routes/OrderRoutes')
 
 const app = express()
 
@@ -44,6 +45,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/carts', cartRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`)
