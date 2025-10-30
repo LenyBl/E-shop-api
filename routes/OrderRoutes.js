@@ -9,7 +9,7 @@ router.get('/', protect, restrictTo('admin'), OrderController.getAllOrders);
 router.get('/:orderId/products', protect, OrderController.getProductsInOrderById);
 router.put('/:orderId/status', protect, restrictTo('admin'), OrderController.updateOrderStatus);
 router.put('/:orderId/products', protect, restrictTo('admin'), OrderController.addProductToOrder);
-router.delete('/:orderId/products/:productId', protect, restrictTo('admin'), OrderController.removeProductFromOrder);
+router.delete('/:orderId/products/remove', protect, restrictTo('admin'), OrderController.removeProductFromOrder);
 router.delete('/:orderId', protect, restrictTo('admin'), OrderController.deleteOrder);
 
 module.exports = router;
