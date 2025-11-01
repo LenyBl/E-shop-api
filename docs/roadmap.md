@@ -19,9 +19,9 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 - [x] Création de la collection `category`
 - [x] CRUD de la collection `category`
-- [ ] Décommenter et tester `mongoSanitize()`
-- [ ] Créer un middleware global `errorHandler.js`
-- [ ] Créer une classe `AppError` personnalisée
+- [x] Décommenter et tester `mongoSanitize()`
+- [x] Créer un middleware global `errorHandler.js`
+- [x] Créer une classe `AppError` personnalisée
 - [ ] Ajouter la validation des données (`express-validator`)
 - [ ] Vérifier les statuts HTTP cohérents
 - [ ] Configurer `morgan` en dev / `winston` en prod
@@ -36,7 +36,6 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 - [ ] Envoyer un mail de bienvenue à l’inscription
 - [ ] Envoyer un mail de confirmation de commande
 - [ ] Implémenter "mot de passe oublié" avec token
-- [ ] (Optionnel) Mail de livraison / expédition
 
 ---
 
@@ -51,18 +50,7 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 ---
 
-## 🗓️ Semaine 4 — Notifications & Temps réel
-> 🎯 Dynamiser l’expérience côté admin et utilisateur.
-
-- [ ] Installer **Socket.io**
-- [ ] Notifier l’admin en temps réel lorsqu’une commande est passée
-- [ ] Notifier l’utilisateur quand le statut de commande change
-- [ ] (Optionnel) Notifications push navigateur
-- [ ] Créer un tableau de bord admin en live
-
----
-
-## 🗓️ Semaine 5 — Statistiques & Analytics
+## 🗓️ Semaine 4 — Statistiques & Analytics
 > 🎯 Ajouter une couche “business intelligence”.
 
 - [ ] Créer `/api/dashboard/stats`
@@ -70,12 +58,10 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
   - Produits les plus vendus
   - Utilisateurs les plus actifs
 - [ ] Implémenter **MongoDB Aggregation Pipeline**
-- [ ] (Optionnel) Cache avec **Redis**
-- [ ] Ajouter un dashboard admin côté front
 
 ---
 
-## 🗓️ Semaine 6 — Sécurité avancée & rôles
+## 🗓️ Semaine 5 — Sécurité avancée & rôles
 > 🎯 Renforcer la structure des utilisateurs et les accès.
 
 - [ ] Ajouter rôles : `user`, `manager`, `admin`
@@ -86,7 +72,7 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 ---
 
-## 🗓️ Semaine 7 — Automatisations & CRON Jobs
+## 🗓️ Semaine 6 — Automatisations & CRON Jobs
 > 🎯 Automatiser les tâches récurrentes.
 
 - [ ] Installer `node-cron` ou `agenda`
@@ -97,7 +83,7 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 ---
 
-## 🗓️ Semaine 8 — Documentation & Déploiement
+## 🗓️ Semaine 7 — Documentation & Déploiement
 > 🎯 Rendre le backend public, propre et documenté.
 
 - [ ] Installer **Swagger UI** (`swagger-ui-express`, `swagger-jsdoc`)
@@ -105,19 +91,6 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 - [ ] Rédiger un `README.md` complet
 - [ ] Déployer sur Render / Railway / VPS (PM2)
 - [ ] Ajouter monitoring (Sentry, Datadog, `express-status-monitor`)
-
----
-
-## 🧩 Bonus Features (optionnelles)
-> Pour un backend e-commerce encore plus complet.
-
-- [ ] Système de **coupons / réductions**
-- [ ] **Wishlist** utilisateur
-- [ ] **Avis / notations produits** avec modération
-- [ ] **Support client** (tickets, messagerie)
-- [ ] **Multi-langue (i18n)** avec `i18next`
-- [ ] **Facturation avancée** (TVA, adresses multiples)
-- [ ] **Mode test / maintenance** activable via `.env`
 
 ---
 
