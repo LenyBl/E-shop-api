@@ -22,7 +22,7 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 - [x] Décommenter et tester `mongoSanitize()`
 - [x] Créer un middleware global `errorHandler.js`
 - [x] Créer une classe `AppError` personnalisée
-- [ ] Configurer `morgan` en dev / `winston` en prod
+- [x] Configurer `morgan` en dev / `winston` en prod
 
 ---
 
