@@ -1,8 +1,9 @@
 const User = require('../models/UserModel');
 const Cart = require('../models/CartModel');
 const bcrypt = require('bcrypt');
+const AppError = require('../utils/AppError');
 
-exports.registerUser = async (req, res) => {
+exports.registerUser = async (req, res, next) => {
     try {
         const { username, email, password, role } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -13,50 +14,50 @@ exports.registerUser = async (req, res) => {
         await newCart.save();
         res.status(201).json({ message: 'User registered successfully', userId: savedUser._id });
     } catch (error) {
-        res.status(500).json({ message: error.message });   
+        return next(new AppError('Error registering user', 500));
     }
 };
 
-exports.getUserById = async (req, res) => {
+exports.getUserById = async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id).select('-password').populate('cart');
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) return next(new AppError('User not found', 404));
         res.json(user);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return next(new AppError('Error fetching user', 500));
     }
 };
 
-exports.updateUser = async (req, res) => {
+exports.updateUser = async (req, res, next) => {
     try {
         const updates = req.body;   
         if (updates.password) {
             updates.password = await bcrypt.hash(updates.password, 10);
         }
         const updatedUser = await User.findByIdAndUpdate(req.params.id, updates, { new: true }).select('-password');
-        if (!updatedUser) return res.status(404).json({ message: 'User not found' });
+        if (!updatedUser) return next(new AppError('User not found', 404));
         res.json(updatedUser);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return next(new AppError('Error updating user', 500));
     }
 };
 
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res, next) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.id);
-        if (!deletedUser) return res.status(404).json({ message: 'User not found' });
+        if (!deletedUser) return next(new AppError('User not found', 404));
         await Cart.findByIdAndDelete(deletedUser.cart);
         res.json({ message: 'User and associated cart deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return next(new AppError('Error deleting user', 500));
     }
 };
 
-exports.getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res, next) => {
     try {
         const users = await User.find().select('-password').populate('cart');
         res.json(users);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return next(new AppError('Error fetching users', 500));
     }       
 };

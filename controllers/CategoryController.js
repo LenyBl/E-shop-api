@@ -1,38 +1,48 @@
 const Category = require('../models/CategoryModel');
+const AppError = require('../utils/AppError');
 
-exports.createCategory = async (req, res) => {
+exports.createCategory = async (req, res, next) => {
     try {
         const { name } = req.body;
         const category = new Category({ name });
         await category.save();
         res.status(201).json({ message: 'Category created successfully', category });
     } catch (error) {
-        res.status(500).json({ message: 'Error creating category', error });
+        return next(new AppError('Error creating category', 500));
     }
 };
 
-exports.getAllCategories = async (req, res) => {
+exports.getAllCategories = async (req, res, next) => {
     try {
         const categories = await Category.find();
         res.status(200).json(categories);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching categories', error });
-    }   
-};
-
-exports.getCategoryById = async (req, res) => {
-    try {
-        const category = await Category.findById(req.params.categoryId);
-        if (!category) {
-            return res.status(404).json({ message: 'Category not found' });
-        }
-        res.status(200).json(category);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching category', error });
+        return next(new AppError('Error fetching categories', 500));
     }
 };
 
-exports.updateCategory = async (req, res) => {
+exports.getAllCategories = async (req, res, next) => {
+    try {
+        const categories = await Category.find();
+        res.status(200).json(categories);
+    } catch (error) {
+        return next(new AppError('Error fetching categories', 500));
+    }   
+};
+
+exports.getCategoryById = async (req, res, next) => {
+    try {
+        const category = await Category.findById(req.params.categoryId);
+        if (!category) {
+            return next(new AppError('Category not found', 404));
+        }
+        res.status(200).json(category);
+    } catch (error) {
+        return next(new AppError('Error fetching category', 500));
+    }
+};
+
+exports.updateCategory = async (req, res, next) => {
     try {
         const { name } = req.body;
         const category = await Category.findByIdAndUpdate(
@@ -41,11 +51,11 @@ exports.updateCategory = async (req, res) => {
             { new: true }
         );  
         if (!category) {
-            return res.status(404).json({ message: 'Category not found' });
+            return next(new AppError('Category not found', 404));
         }   
         res.status(200).json({ message: 'Category updated successfully', category });
     } catch (error) {
-        res.status(500).json({ message: 'Error updating category', error });
+        return next(new AppError('Error updating category', 500));
     }   
 };
 
@@ -53,11 +63,11 @@ exports.deleteCategory = async (req, res) => {
     try {
         const category = await Category.findByIdAndDelete(req.params.categoryId);
         if (!category) {
-            return res.status(404).json({ message: 'Category not found' });
+            return next(new AppError('Category not found', 404));
         }
         res.status(200).json({ message: 'Category deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Error deleting category', error });
+        return next(new AppError('Error deleting category', 500));
     }   
 };
 
