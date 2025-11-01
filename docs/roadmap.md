@@ -22,7 +22,6 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 - [x] Décommenter et tester `mongoSanitize()`
 - [x] Créer un middleware global `errorHandler.js`
 - [x] Créer une classe `AppError` personnalisée
-- [ ] Vérifier les statuts HTTP cohérents
 - [ ] Configurer `morgan` en dev / `winston` en prod
 
 ---
@@ -60,12 +59,9 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 ---
 
-## 🗓️ Semaine 5 — Sécurité avancée & rôles
+## 🗓️ Semaine 5 — Sécurité avancée
 > 🎯 Renforcer la structure des utilisateurs et les accès.
 
-- [ ] Ajouter rôles : `user`, `manager`, `admin`
-- [ ] Créer middleware `restrictTo(['admin', 'manager'])`
-- [ ] (Optionnel) Ajouter 2FA (Two-Factor Auth) avec `speakeasy`
 - [ ] Ajouter un **audit log** (connexions / actions sensibles)
 - [ ] Bloquer les comptes inactifs (CRON job)
 
