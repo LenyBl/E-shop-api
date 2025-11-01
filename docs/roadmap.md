@@ -83,17 +83,6 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 
 ---
 
-## 🗓️ Semaine 7 — Documentation & Déploiement
-> 🎯 Rendre le backend public, propre et documenté.
-
-- [ ] Installer **Swagger UI** (`swagger-ui-express`, `swagger-jsdoc`)
-- [ ] Documenter toutes les routes (inputs / outputs / auth)
-- [ ] Rédiger un `README.md` complet
-- [ ] Déployer sur Render / Railway / VPS (PM2)
-- [ ] Ajouter monitoring (Sentry, Datadog, `express-status-monitor`)
-
----
-
 ## 🏁 Résultat attendu
 À la fin de la roadmap :
 - Un **backend e-commerce complet, robuste et sécurisé**
