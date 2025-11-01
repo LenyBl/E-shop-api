@@ -17,8 +17,8 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 ## 🗓️ Semaine 1 — Fiabilisation & Base technique
 > 🎯 Stabiliser le backend et uniformiser les erreurs / validations.
 
-- [ ] Création de la collection `category`
-- [ ] CRUD de la collection `category`
+- [x] Création de la collection `category`
+- [x] CRUD de la collection `category`
 - [ ] Décommenter et tester `mongoSanitize()`
 - [ ] Créer un middleware global `errorHandler.js`
 - [ ] Créer une classe `AppError` personnalisée
