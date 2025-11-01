@@ -22,7 +22,6 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 - [x] Décommenter et tester `mongoSanitize()`
 - [x] Créer un middleware global `errorHandler.js`
 - [x] Créer une classe `AppError` personnalisée
-- [ ] Ajouter la validation des données (`express-validator`)
 - [ ] Vérifier les statuts HTTP cohérents
 - [ ] Configurer `morgan` en dev / `winston` en prod
 
