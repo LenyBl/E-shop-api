@@ -29,11 +29,10 @@ Créer un backend e-commerce complet, sécurisé et maintenable, avec toutes les
 ## 🗓️ Semaine 2 — Système d’e-mails
 > 🎯 Ajouter des notifications automatiques pour les utilisateurs.
 
-- [ ] Installer `nodemailer`
-- [ ] Créer `emailService.js`
-- [ ] Envoyer un mail de bienvenue à l’inscription
-- [ ] Envoyer un mail de confirmation de commande
-- [ ] Implémenter "mot de passe oublié" avec token
+- [x] Installer `nodemailer`
+- [x] Créer `emailService.js`
+- [x] Envoyer un mail de bienvenue à l’inscription
+- [x] Envoyer un mail de confirmation de commande
 
 ---
 
