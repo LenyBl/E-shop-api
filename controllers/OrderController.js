@@ -1,4 +1,5 @@
 const Order = require('../models/OrderModel');
+const EmailController = require('../controllers/EmailController');
 const AppError = require('../utils/AppError');
 
 exports.createOrder = async (req, res, next) => {
@@ -11,7 +12,8 @@ exports.createOrder = async (req, res, next) => {
 		};
 		const order = new Order(orderData);
 		const savedOrder = await order.save();
-		res.status(201).json(savedOrder);
+		res.status(201).json(savedOrder); 
+		await EmailController.sendOrderConfirmationEmail({ body: { to: req.user.email, orderId: savedOrder._id, orderDetails: `Total Price: $${savedOrder.totalPrice}` } }, res, next);
 	} catch (error) {
 		return next(new AppError('Error creating order', 500));
 	}
@@ -92,6 +94,11 @@ exports.updateOrderStatus = async (req, res, next) => {
 			return next(new AppError('Order not found', 404));
 		}
 		order.status = req.body.status;
+		if (req.body.status === 'shipped') {
+			await EmailController.sendOrderShippedEmail({ body: { to: req.user.email, orderId: order._id } }, res, next);
+		} else if (req.body.status === 'delivered') {
+			await EmailController.sendOrderDeliveredEmail({ body: { to: req.user.email, orderId: order._id } }, res, next);
+		} 
 		order.updatedAt = Date.now();
 		const updatedOrder = await order.save();
 		res.status(200).json(updatedOrder);
