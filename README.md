@@ -1,4 +1,4 @@
-# 🛍️ E-Shop TL API
+# 🛍️ E-Shop API
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
@@ -60,9 +60,6 @@ API RESTful e‑commerce développée avec Node.js, Express et MongoDB. Document
   - [middlewares/authMiddleware.js](middlewares/authMiddleware.js) — [`protect`](middlewares/authMiddleware.js), [`restrictTo`](middlewares/authMiddleware.js)
   - [middlewares/xssMiddleware.js](middlewares/xssMiddleware.js)
   - [middlewares/errorHandler.js](middlewares/errorHandler.js) — global error handler
-
-- Docs / Roadmap
-  - [docs/roadmap.md](docs/roadmap.md)
 
 ---
 
