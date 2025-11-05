@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmail({ to, subject, text, html }) {
   const mailOptions = {
-    from: '"E-Shop TL" <no-reply@eshop.com>',
+    from: '"Name of Your Shop" <' + process.env.EMAIL_USER + '>',
     to,
     subject,
     text,

@@ -1,138 +1,156 @@
+// ...existing code...
 # 🛍️ E-Shop TL API
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=jsonwebtokens)
-![Nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=jsonwebtokens)](https://jwt.io/)
+[![Nodemailer](https://img.shields.io/badge/Nodemailer-FF6F61?style=for-the-badge&logo=nodemailer&logoColor=white)](https://nodemailer.com/)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](./package.json)
 
-> API RESTful e-commerce développée avec **Node.js**, **Express** et **MongoDB**.  
-> Elle permet la gestion des utilisateurs, produits, paniers et commandes, avec un système d’authentification sécurisé par **JWT**.
-
----
-
-## ⚙️ Fonctionnalités principales
-
-- 🔐 Authentification JWT (inscription / connexion)
-- 👤 CRUD complet des utilisateurs
-- 🛒 Gestion des paniers (cart)
-- 📦 CRUD des produits
-- 📦 Création et suivi des commandes
-- 🧑‍💼 Gestion des rôles (admin / user)
-- 🛡️ Sécurité (bcrypt, dotenv, CORS, Helmet)
-- 🧩 Architecture MVC modulaire et claire
+API RESTful e‑commerce développée avec Node.js, Express et MongoDB. Documentation du projet, endpoints et fichiers clés.
 
 ---
 
-## 🗂️ Structure du projet
+## Vue d'ensemble rapide
 
-```
-e-shop-tl-api/
-│
-├── config/
-│   └── database.js
-│
-├── controllers/
-│   ├── UserController.js
-│   ├── ProductController.js
-│   ├── CartController.js
-│   ├── OrderController.js  
-|   └── AuthController.js  
-│
-├── models/
-│   ├── UserModel.js
-│   ├── ProductModel.js
-│   ├── CartModel.js
-│   └── OrderModel.js
-│
-├── routes/
-│   ├── UserRoute.js
-│   ├── ProductRoute.js
-│   ├── CartRoute.js
-│   └── OrderRoute.js
-|
-|── tools/
-│    ├── randomNumber.js
-|
-├── middlewares/
-│   ├── authMiddleware.js
-│
-├── .env
-├── .gitignore
-├── app.js
-├── package.json
-└── README.md
-```
+- Point d'entrée : [app.js](app.js)  
+- Connexion BD : [`connectDB`](config/database.js) — [config/database.js](config/database.js)  
+- Envoi d'e‑mails : [`sendEmail`](config/nodemail.js) — [config/nodemail.js](config/nodemail.js)  
+- Erreurs personnalisées : [`AppError`](utils/AppError.js) — [utils/AppError.js](utils/AppError.js)  
+- Logger : [`logger`](utils/logger.js) — [utils/logger.js](utils/logger.js)
 
 ---
 
-## 🧩 Installation & Configuration
+## Structure & fichiers importants
 
+- Configuration / démarrage
+  - [app.js](app.js)
+  - [package.json](package.json)
+  - [.env](.env)
+
+- Configuration
+  - Database: [config/database.js](config/database.js) (`[`connectDB`](config/database.js)`)
+  - Mail: [config/nodemail.js](config/nodemail.js) (`[`sendEmail`](config/nodemail.js)`)
+
+- Routes
+  - [routes/AuthRoute.js](routes/AuthRoute.js) -> [`AuthController.login`](controllers/AuthController.js)
+  - [routes/UserRoute.js](routes/UserRoute.js) -> [`UserController.registerUser`](controllers/UserController.js), [`UserController.getAllUsers`](controllers/UserController.js)
+  - [routes/ProductRoute.js](routes/ProductRoute.js) -> [`ProductController.getAllProducts`](controllers/ProductController.js)
+  - [routes/CartRoute.js](routes/CartRoute.js) -> [`CartController.getCartByUserId`](controllers/CartController.js)
+  - [routes/OrderRoute.js](routes/OrderRoute.js) -> [`OrderController.createOrder`](controllers/OrderController.js)
+  - [routes/CategoryRoute.js](routes/CategoryRoute.js) -> [`CategoryController.createCategory`](controllers/CategoryController.js)
+  - [routes/StatsRoute.js](routes/StatsRoute.js) -> [`StatsController.getOrderTotalPriceStats`](controllers/StatsController.js)
+
+- Controllers (exemples)
+  - [controllers/AuthController.js](controllers/AuthController.js) — [`AuthController.login`](controllers/AuthController.js)
+  - [controllers/UserController.js](controllers/UserController.js) — [`UserController.registerUser`](controllers/UserController.js), [`UserController.getUserById`](controllers/UserController.js)
+  - [controllers/ProductController.js](controllers/ProductController.js) — [`ProductController.createProduct`](controllers/ProductController.js)
+  - [controllers/CartController.js](controllers/CartController.js) — [`CartController.addItemToCart`](controllers/CartController.js)
+  - [controllers/OrderController.js](controllers/OrderController.js) — [`OrderController.createOrder`](controllers/OrderController.js)
+  - [controllers/EmailController.js](controllers/EmailController.js) — email helpers
+
+- Models
+  - [models/UserModel.js](models/UserModel.js) — `User`
+  - [models/ProductModel.js](models/ProductModel.js) — `Product`
+  - [models/CartModel.js](models/CartModel.js) — `Cart`
+  - [models/OrderModel.js](models/OrderModel.js) — `Order`
+  - [models/CategoryModel.js](models/CategoryModel.js) — `Category`
+
+- Middlewares
+  - [middlewares/authMiddleware.js](middlewares/authMiddleware.js) — [`protect`](middlewares/authMiddleware.js), [`restrictTo`](middlewares/authMiddleware.js)
+  - [middlewares/xssMiddleware.js](middlewares/xssMiddleware.js)
+  - [middlewares/errorHandler.js](middlewares/errorHandler.js) — global error handler
+
+- Docs / Roadmap
+  - [docs/roadmap.md](docs/roadmap.md)
+
+---
+
+## Installation & démarrage
+
+1. Cloner et installer :
 ```bash
-git clone https://github.com/LenyBl/e-shop-tl-api.git
+git clone <repo>
 cd e-shop-tl-api
 npm install
 ```
 
-Créer un fichier `.env` :
-```
-PORT=3000
-DB_HOST=mongodb://127.0.0.1:27017/tl-shop
-JWT_SECRET=ton_secret_jwt_ultra_secure
-```
+2. Créer `.env` (voir [app.js](app.js) et [config/database.js](config/database.js)):
+- PORT
+- DB_HOST
+- JWT_SECRET, JWT_EXPIRES_IN
+- EMAIL_HOST, EMAIL_PORT, EMAIL_SECURE, EMAIL_USER, EMAIL_PASS
 
-Lancer le serveur :
+3. Lancer en dev :
 ```bash
 npm run dev
 ```
 
 ---
 
-## 📬 API Endpoints
+## Scripts utiles
 
-### 👤 Utilisateurs
-| Méthode | Endpoint | Description |
-|----------|-----------|-------------|
-| POST | /api/users/register | Inscription utilisateur |
-| POST | /api/users/login | Connexion utilisateur |
-| GET | /api/users/:id | Récupérer un utilisateur |
-| PUT | /api/users/:id | Mettre à jour un utilisateur |
-| DELETE | /api/users/:id | Supprimer un utilisateur |
-
-### 🛍️ Produits
-| Méthode | Endpoint | Description |
-|----------|-----------|-------------|
-| POST | /api/products | Créer un produit |
-| GET | /api/products | Lister tous les produits |
-| GET | /api/products/:id | Obtenir un produit |
-| PUT | /api/products/:id | Modifier un produit |
-| DELETE | /api/products/:id | Supprimer un produit |
-
-### 🛒 Panier
-| Méthode | Endpoint | Description |
-|----------|-----------|-------------|
-| GET | /api/carts/:userId | Récupérer le panier |
-| POST | /api/carts/:userId/items | Ajouter un article |
-| PUT | /api/carts/:userId/items/:itemId | Modifier la quantité |
-| DELETE | /api/carts/:userId/items/:itemId | Supprimer un article |
-| DELETE | /api/carts/:userId/clear | Vider le panier |
+- npm run dev — démarre en dev via nodemon ([package.json](package.json))
 
 ---
 
-## 🔐 Authentification JWT
+## Endpoints principaux (résumé)
 
-Header requis :
-```
-Authorization: Bearer <token>
-```
+- Auth
+  - POST /api/auth/login -> [`AuthController.login`](controllers/AuthController.js)
+
+- Users
+  - POST /api/users/register -> [`UserController.registerUser`](controllers/UserController.js)
+  - GET /api/users -> [`UserController.getAllUsers`](controllers/UserController.js)
+
+- Produits
+  - GET /api/products -> [`ProductController.getAllProducts`](controllers/ProductController.js)
+  - POST /api/products -> [`ProductController.createProduct`](controllers/ProductController.js)
+
+- Panier
+  - GET /api/carts/:userId -> [`CartController.getCartByUserId`](controllers/CartController.js)
+  - POST /api/carts/:userId/:idItems -> [`CartController.addItemToCart`](controllers/CartController.js)
+
+- Commandes
+  - POST /api/orders -> [`OrderController.createOrder`](controllers/OrderController.js)
+  - PUT /api/orders/:orderId/status -> [`OrderController.updateOrderStatus`](controllers/OrderController.js)
+
+Consultez les fichiers dans [routes/](routes) pour la liste complète.
 
 ---
 
-## 👨‍💻 Auteur
+## Sécurité & bonnes pratiques
 
-**Leny BLEE**  
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LenyBl)
+- Auth JWT via [`middlewares/authMiddleware.js`](middlewares/authMiddleware.js) (middleware [`protect`](middlewares/authMiddleware.js) + rôle via [`restrictTo`](middlewares/authMiddleware.js))
+- Sanitization XSS via [middlewares/xssMiddleware.js](middlewares/xssMiddleware.js) et mongo sanitize dans [app.js](app.js)
+- Erreurs centralisées via [`AppError`](utils/AppError.js) et [middlewares/errorHandler.js](middlewares/errorHandler.js)
+- Envoi d'e‑mails centralisé : [`sendEmail`](config/nodemail.js) — [config/nodemail.js](config/nodemail.js)
 
 ---
 
-🧾 *Projet pédagogique — e-commerce API backend Node.js/MongoDB.*
+## Débogage & logs
+
+- En développement : `morgan` (voir [app.js](app.js))
+- En production : `winston` via [utils/logger.js](utils/logger.js)
+
+---
+
+## Contribuer
+
+1. Ouvrir une issue.
+2. Branch feature.
+3. PR avec description.
+
+---
+
+Fichiers à ouvrir en priorité :
+- [app.js](app.js)
+- [config/database.js](config/database.js)
+- [config/nodemail.js](config/nodemail.js)
+- [controllers/](controllers/)
+- [models/](models/)
+- [routes/](routes/)
+- [middlewares/](middlewares/)
+- [utils/AppError.js](utils/AppError.js)
+- [utils/logger.js](utils/logger.js)
