@@ -17,6 +17,7 @@ const cartRoutes = require('./routes/CartRoute')
 const authRoutes = require('./routes/authRoute')
 const orderRoutes = require('./routes/OrderRoute')
 const categoryRoutes = require('./routes/CategoryRoute')
+const statsRoutes = require('./routes/StatsRoute')
 
 const app = express()
 
@@ -75,6 +76,7 @@ app.use('/api/carts', cartRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/categories', categoryRoutes)
+app.use('/api/stats', statsRoutes)
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`)
